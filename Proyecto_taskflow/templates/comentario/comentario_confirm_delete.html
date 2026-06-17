@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Eliminar Comentario
+{% endblock %}
+
+{% block content %}
+
+<h2>Eliminar Comentario</h2>
+
+<p>
+    ¿Está seguro de eliminar este comentario?
+</p>
+
+<p>
+    <strong>
+        {{ comentario.texto_comentario }}
+    </strong>
+</p>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    <button type="submit">
+        Eliminar
+    </button>
+
+    <a href="{% url 'comentario_list' %}">
+        Cancelar
+    </a>
+
+</form>
+
+{% endblock %}

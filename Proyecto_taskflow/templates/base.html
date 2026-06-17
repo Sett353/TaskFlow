@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}TaskFlow{% endblock %}</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body class="bg-light">
+
+    <!-- HEADER -->
+
+    <header class="bg-dark text-white shadow">
+
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center py-3">
+
+                <div>
+
+                    <h2 class="m-0">
+                        <i class="bi bi-diagram-3-fill"></i>
+                        TaskFlow
+                    </h2>
+
+                    <small class="text-secondary">
+                        Sistema de Gestión de Proyectos
+                    </small>
+
+                </div>
+
+                <div>
+
+                    <span class="badge bg-primary fs-6">
+
+                        <i class="bi bi-person-circle"></i>
+
+                        {% if user.is_authenticated %}
+                            {{ user.username }}
+                        {% else %}
+                            Invitado
+                        {% endif %}
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+        <div class="container">
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarTaskFlow">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div
+                class="collapse navbar-collapse"
+                id="navbarTaskFlow">
+
+                <ul class="navbar-nav me-auto">
+
+                    <li class="nav-item">
+
+                        <a class="nav-link"
+                           href="{% url 'comentario_list' %}">
+
+                            <i class="bi bi-chat-left-text"></i>
+                            Comentarios
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link"
+                           href="{% url 'comentario_create' %}">
+
+                            <i class="bi bi-plus-circle"></i>
+                            Nuevo Comentario
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <!-- CONTENIDO -->
+
+    <main class="container my-4">
+
+        <div class="card shadow-sm">
+
+            <div class="card-body">
+
+                {% block content %}
+                {% endblock %}
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer class="bg-dark text-center text-light py-3 mt-5">
+
+        <small>
+
+            © 2026 TaskFlow - Sistema de Gestión de Proyectos
+
+        </small>
+
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -15,8 +15,40 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+from apps.Comentario.views import comentario_list, comentario_delete, comentario_create, comentario_update
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('comentario/', include('apps.Comentario.urls')),
+    path(
+        '',
+        comentario_list,
+        name='comentario_list'
+    ),
+
+    path(
+        'crear/',
+        comentario_create,
+        name='comentario_create'
+    ),
+
+    path(
+        'editar/<int:pk>/',
+        comentario_update,
+        name='comentario_update'
+    ),
+
+    path(
+        'eliminar/<int:pk>/',
+        comentario_delete,
+        name='comentario_delete'
+    ),
 ]
+
+urlpatterns += static(
+    settings.MEDIA_URL,
+    document_root=settings.MEDIA_ROOT
+)
